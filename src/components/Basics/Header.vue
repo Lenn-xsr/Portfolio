@@ -1,17 +1,19 @@
 <template>
-  <nav>
-    <h1><small>&lt; </small> Lennart <small> /></small></h1>
-  </nav>
+  <header>
+    <nav>
+      <h1><small>&lt; </small> Lennart <small> /></small></h1>
+    </nav>
+  </header>
 </template>
 
 <script>
 export default {
-  name: "Sidebar",
+  name: "Header",
 };
 </script>
 
 <style scoped>
-nav {
+header {
   padding: 3.5rem 2rem;
   width: clamp(100px, 250px, 10vw);
   min-width: max-content;

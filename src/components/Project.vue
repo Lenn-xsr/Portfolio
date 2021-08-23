@@ -52,8 +52,9 @@ export default {
   width: max-content;
   border-radius: 1px;
   position: absolute;
-  width: 100%;
-  bottom: 0;
+  width: calc(100% + 8px);
+  bottom: 3px;
+  left: -4px;
   animation: width-animation 2.3s;
   z-index: -1;
 }
@@ -73,19 +74,19 @@ export default {
   height: 100%;
   color: transparent;
   padding: 0;
-  margin: 2px 7px;
+  margin: 10px 0px;
   animation: dashed-anim 3s;
 }
 
 .project-description p {
   padding: 16px 0;
   margin: 10px 10px 10px -10px;
-  color: var(--secondary-fading);
   animation: slide-from-left 3.2s;
 }
 
 .project-description small {
   color: var(--fading);
+  font-size: 0.9rem;
 }
 
 @keyframes slide-from-left {

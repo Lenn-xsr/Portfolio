@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Sidebar />
+    <Header />
     <article class="projects-content">
       <section
         class="project-wrapper"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Sidebar from "@/components/Basics/Sidebar.vue";
+import Header from "@/components/Basics/Header.vue";
 import Project from "@/components/Project.vue";
 import { projects } from "@/test.json";
 
@@ -31,7 +31,7 @@ export default {
       test: 0.5,
     };
   },
-  components: { Sidebar, Project },
+  components: { Header, Project },
 };
 </script>
 
@@ -43,6 +43,7 @@ main {
 .projects-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
 }
 
 .project-wrapper {
@@ -54,16 +55,4 @@ main {
   border-right: 1px solid var(--fading);
   margin-right: -2px;
 }
-
-/* .projects-content .project-content:nth-child(1) {
-  animation: project-from-bottom 0.5s;
-}
-
-.projects-content .project-content:nth-child(2) {
-  animation: project-from-bottom 1s;
-}
-
-.projects-content .project-content:nth-child(3) {
-  animation: project-from-bottom 1.5s;
-} */
 </style>

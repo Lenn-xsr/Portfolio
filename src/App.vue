@@ -61,7 +61,7 @@ export default {
 
 * {
   box-sizing: border-box;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 body,
@@ -70,7 +70,6 @@ html {
   background: var(--primary);
   font-size: initial;
   line-height: initial;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 
 ::after,
@@ -138,7 +137,9 @@ a:hover {
 }
 
 p {
-  color: rgba(204, 204, 204);
+  color: var(--secondary-fading);
+  font-size: 0.9rem;
+  line-height: 1.7;
   white-space: break-spaces;
 }
 
