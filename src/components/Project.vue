@@ -3,14 +3,14 @@
     class="project-content"
     :style="{ animation: `project-from-bottom ${animationTime}s` }"
   >
-    <h1>{{ project.title }}</h1>
+    <h1>{{ project.title || project.name }}</h1>
     <div class="project-description">
       <div>
         <small>&lt;p></small>
         <hr />
         <small>&lt;/p></small>
       </div>
-      <p>― {{ project.description }}</p>
+      <p>― {{ project.description || "No description given." }}</p>
     </div>
   </div>
 </template>
@@ -40,16 +40,16 @@ export default {
   font-size: 1.5rem;
   margin-bottom: 5px;
   animation: slide-from-bottom 2.5s;
-  width: max-content;
+  width: -moz-fit-content;
   position: relative;
+  text-transform: capitalize;
   z-index: 1;
 }
 
 .project-content h1::before {
   content: "";
   background-color: var(--lighted-fading);
-  height: 25%;
-  width: max-content;
+  height: 6px;
   border-radius: 1px;
   position: absolute;
   width: calc(100% + 8px);
@@ -111,6 +111,12 @@ export default {
 
   .project-content h1 {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 1443px) {
+  .project-content h1 {
+    font-size: 1rem;
   }
 }
 </style>

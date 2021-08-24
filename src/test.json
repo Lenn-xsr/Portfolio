@@ -23,30 +23,6 @@
         "website": "",
         "icon": "language"
       }
-    },
-    {
-      "title": "Aaa",
-      "description": "Morbi sit amet facilisis eros. Morbi lobortis arcu nec leo varius sagittis. Ut at placerat augue. Nulla dolor odio, sagittis eget convallis id, tristique nec eros. Vestibulum in nunc lacus. Aliquam luctus convallis dolor, vitae fringilla tellus interdum a.",
-      "infos": {
-        "website": "",
-        "icon": "language"
-      }
-    },
-    {
-      "title": "Bbb",
-      "description": "Morbi sit amet facilisis eros. Morbi lobortis arcu nec leo varius sagittis. Ut at placerat augue. Nulla dolor odio, sagittis eget convallis id, tristique nec eros. Vestibulum in nunc lacus. Aliquam luctus convallis dolor, vitae fringilla tellus interdum a.",
-      "infos": {
-        "website": "",
-        "icon": "language"
-      }
-    },
-    {
-      "title": "Ccc",
-      "description": "Morbi sit amet facilisis eros. Morbi lobortis arcu nec leo varius sagittis. Ut at placerat augue. Nulla dolor odio, sagittis eget convallis id, tristique nec eros. Vestibulum in nunc lacus. Aliquam luctus convallis dolor, vitae fringilla tellus interdum a.",
-      "infos": {
-        "website": "",
-        "icon": "language"
-      }
     }
   ]
 }

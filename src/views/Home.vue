@@ -1,11 +1,14 @@
 <template>
   <main>
     <Header :setPage="setPage" :pagesTotal="pagesTotal" />
-    <article class="projects-content">
+    <article
+      class="projects-content"
+      :style="{ 'grid-template-columns': `repeat(${perPage}, 1fr)` }"
+    >
       <section
         class="project-wrapper"
         v-for="(project, index) in getPageProjects"
-        :key="project.title"
+        :key="project.title || project.id"
       >
         <Project
           :project="project"
@@ -56,6 +59,21 @@ export default {
     setPage(page) {
       this.currentPage = page - 1;
     },
+    getGithubProjects() {
+      fetch("https://api.github.com/users/lenn-xsr/repos")
+        .then((r) => r.json())
+        .then((response) => {
+          const projects = response.map(
+            ({ id, name, description, url, language, stargazers_count }) => {
+              return { id, name, description, url, language, stargazers_count };
+            }
+          );
+          this.projects = [...this.projects, ...projects];
+        });
+    },
+  },
+  created() {
+    this.getGithubProjects();
   },
 };
 </script>
@@ -67,13 +85,14 @@ main {
 
 .projects-content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
+  width: 100%;
 }
 
 .project-wrapper {
   display: grid;
   place-content: center;
+  justify-content: initial;
 }
 
 .projects-content .project-wrapper:not(:last-child) {
