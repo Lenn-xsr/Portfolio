@@ -31,7 +31,6 @@ export default {
       projects,
       perPage: 3,
       currentPage: 0,
-      currentList: [],
     };
   },
   computed: {
@@ -46,14 +45,7 @@ export default {
           ? this.perPage * (this.currentPage + 1)
           : this.perPage;
 
-      return [
-        ...newList.slice(
-          offset >= newList.length
-            ? newList.length - this.currentList.length
-            : offset,
-          range
-        ),
-      ];
+      return [...newList.slice(offset, range)];
     },
     pagesTotal() {
       const total = this.projects.length / this.perPage;
