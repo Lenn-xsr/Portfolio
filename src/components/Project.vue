@@ -67,6 +67,7 @@ export default {
   display: flex;
   flex-direction: column;
   z-index: 1;
+  user-select: none;
 }
 
 .project-description div hr {

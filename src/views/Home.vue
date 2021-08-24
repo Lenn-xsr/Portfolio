@@ -1,10 +1,10 @@
 <template>
   <main>
-    <Header />
+    <Header :setPage="setPage" :pagesTotal="pagesTotal" />
     <article class="projects-content">
       <section
         class="project-wrapper"
-        v-for="(project, index) in projects"
+        v-for="(project, index) in getPageProjects"
         :key="project.title"
       >
         <Project
@@ -25,13 +25,46 @@ import { projects } from "@/test.json";
 
 export default {
   name: "Home",
+  components: { Header, Project },
   data() {
     return {
       projects,
-      test: 0.5,
+      perPage: 3,
+      currentPage: 0,
+      currentList: [],
     };
   },
-  components: { Header, Project },
+  computed: {
+    getPageProjects() {
+      const newList = [...this.projects];
+      const offset =
+        this.currentPage > 0
+          ? this.perPage * this.currentPage
+          : this.currentPage;
+      const range =
+        this.currentPage > 0
+          ? this.perPage * (this.currentPage + 1)
+          : this.perPage;
+
+      return [
+        ...newList.slice(
+          offset >= newList.length
+            ? newList.length - this.currentList.length
+            : offset,
+          range
+        ),
+      ];
+    },
+    pagesTotal() {
+      const total = this.projects.length / this.perPage;
+      return total !== Infinity ? Math.ceil(total) : 0;
+    },
+  },
+  methods: {
+    setPage(page) {
+      this.currentPage = page - 1;
+    },
+  },
 };
 </script>
 

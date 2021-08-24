@@ -310,6 +310,15 @@ input:checked + .slider::before {
   }
 }
 
+@keyframes menu-from-left {
+  0% {
+    transform: translate3d(-200%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes width-animation {
   0% {
     width: 0%;
