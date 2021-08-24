@@ -45,6 +45,7 @@ export default {
   width: fit-content;
   position: relative;
   text-transform: capitalize;
+  user-select: none;
   z-index: 1;
 }
 

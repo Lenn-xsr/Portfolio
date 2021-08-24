@@ -1,6 +1,10 @@
 <template>
   <main>
-    <Header :setPage="setPage" :pagesTotal="pagesTotal" />
+    <Header
+      :setPage="setPage"
+      :pagesTotal="pagesTotal"
+      :currentPage="currentPage + 1"
+    />
     <article
       class="projects-content"
       :style="{ 'grid-template-columns': `repeat(${perPage}, 1fr)` }"
@@ -27,7 +31,6 @@ import Header from "@/components/Basics/Header.vue";
 import Project from "@/components/Project.vue";
 import { projects } from "@/test.json";
 import Aside from "@/components/Basics/Aside.vue";
-
 export default {
   name: "Home",
   components: { Header, Project, Aside },
@@ -49,7 +52,6 @@ export default {
         this.currentPage > 0
           ? this.perPage * (this.currentPage + 1)
           : this.perPage;
-
       return [...newList.slice(offset, range)];
     },
     pagesTotal() {
@@ -59,13 +61,17 @@ export default {
   },
   methods: {
     setPage(page) {
-      this.currentPage = page - 1;
+      if (page < this.pagesTotal && page >= 0) this.currentPage = page;
     },
     setResponsiveSize() {
       const docWidth = document.body.clientWidth;
       if (docWidth >= 1449) this.perPage = 3;
       else if (docWidth <= 1448 && docWidth > 1015) this.perPage = 2;
       else this.perPage = 1;
+    },
+    setPageOnScroll({ deltaY }) {
+      if (deltaY >= 0) this.setPage(this.currentPage + 1);
+      else this.setPage(this.currentPage - 1);
     },
     getGithubProjects() {
       fetch("https://api.github.com/users/lenn-xsr/repos")
@@ -85,6 +91,7 @@ export default {
     this.setResponsiveSize();
 
     document.body.onresize = this.setResponsiveSize;
+    document.addEventListener("wheel", (e) => this.setPageOnScroll(e));
   },
 };
 </script>
@@ -93,24 +100,20 @@ export default {
 main {
   display: flex;
 }
-
 .projects-content {
   display: grid;
   overflow: hidden;
   width: 100%;
 }
-
 .project-wrapper {
   display: grid;
   place-content: center;
   justify-content: initial;
 }
-
 .projects-content .project-wrapper:not(:last-child) {
   border-right: 1px solid var(--fading);
   margin-right: -2px;
 }
-
 @media screen and (max-width: 1015px) {
   main {
     flex-direction: column;

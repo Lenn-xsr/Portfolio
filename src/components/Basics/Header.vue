@@ -7,8 +7,8 @@
           v-for="page in pagesTotal"
           :key="page"
           :class="currentPage == page ? 'menu-btn active' : 'menu-btn'"
-          :style="{ 'animation-duration': `${page - 0.5}s` }"
-          @click.prevent="setPage(page), (currentPage = page)"
+          :style="{ 'animation-duration': `${page - 0.8}s` }"
+          @click.prevent="setPage(page - 1)"
         ></li>
       </ul>
     </nav>
@@ -18,12 +18,7 @@
 <script>
 export default {
   name: "Header",
-  props: ["pagesTotal", "setPage"],
-  data() {
-    return {
-      currentPage: 1,
-    };
-  },
+  props: ["pagesTotal", "setPage", "currentPage"],
 };
 </script>
 
