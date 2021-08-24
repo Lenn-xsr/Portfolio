@@ -18,6 +18,7 @@
         />
       </section>
     </article>
+    <Aside />
   </main>
 </template>
 
@@ -25,10 +26,11 @@
 import Header from "@/components/Basics/Header.vue";
 import Project from "@/components/Project.vue";
 import { projects } from "@/test.json";
+import Aside from "@/components/Basics/Aside.vue";
 
 export default {
   name: "Home",
-  components: { Header, Project },
+  components: { Header, Project, Aside },
   data() {
     return {
       projects,
@@ -59,6 +61,12 @@ export default {
     setPage(page) {
       this.currentPage = page - 1;
     },
+    setResponsiveSize() {
+      const docWidth = document.body.clientWidth;
+      if (docWidth >= 1449) this.perPage = 3;
+      else if (docWidth <= 1448 && docWidth > 1015) this.perPage = 2;
+      else this.perPage = 1;
+    },
     getGithubProjects() {
       fetch("https://api.github.com/users/lenn-xsr/repos")
         .then((r) => r.json())
@@ -74,6 +82,9 @@ export default {
   },
   created() {
     this.getGithubProjects();
+    this.setResponsiveSize();
+
+    document.body.onresize = this.setResponsiveSize;
   },
 };
 </script>
@@ -98,5 +109,11 @@ main {
 .projects-content .project-wrapper:not(:last-child) {
   border-right: 1px solid var(--fading);
   margin-right: -2px;
+}
+
+@media screen and (max-width: 1015px) {
+  main {
+    flex-direction: column;
+  }
 }
 </style>

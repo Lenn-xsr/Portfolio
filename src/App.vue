@@ -3,17 +3,9 @@
     <transition mode="out-in">
       <router-view />
     </transition>
-    <Aside />
   </div>
 </template>
 <script>
-import Aside from "@/components/Basics/Aside.vue";
-
-export default {
-  components: {
-    Aside,
-  },
-};
 </script>
 
 <style>
@@ -297,6 +289,26 @@ input:checked + .slider::before {
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slide-from-top {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -25px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slide-from-bottom-90deg {
+  0% {
+    opacity: 0;
+    transform: rotate(90deg) translate3d(25px, 0, 0);
+  }
+  100% {
+    transform: rotate(90deg) translate3d(0, 0, 0);
   }
 }
 

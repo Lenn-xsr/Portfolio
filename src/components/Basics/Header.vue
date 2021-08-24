@@ -7,7 +7,7 @@
           v-for="page in pagesTotal"
           :key="page"
           :class="currentPage == page ? 'menu-btn active' : 'menu-btn'"
-          :style="{ animation: `menu-from-left ${page - 0.5}s` }"
+          :style="{ 'animation-duration': `${page - 0.5}s` }"
           @click.prevent="setPage(page), (currentPage = page)"
         ></li>
       </ul>
@@ -66,6 +66,7 @@ h1 small {
   place-content: center;
   justify-content: flex-start;
   cursor: pointer;
+  animation: menu-from-left;
 }
 
 .menu-btn::before {
@@ -81,5 +82,34 @@ h1 small {
 .menu-btn:hover::before {
   width: 20px;
   background-color: var(--secondary);
+}
+
+@media screen and (max-width: 1015px) {
+  header {
+    width: 100%;
+    height: max-content;
+    border: none;
+    padding: 2.5rem 1rem;
+    border-bottom: 1px solid var(--fading);
+  }
+
+  h1 {
+    animation: slide-from-top 1s;
+  }
+
+  .side-menu {
+    margin-top: 25px;
+    justify-self: center;
+    display: flex;
+  }
+
+  .menu-btn {
+    transform: rotate(90deg);
+    animation: slide-from-bottom-90deg;
+  }
+
+  .side-menu .menu-btn:not(:first-child) {
+    margin-top: 0;
+  }
 }
 </style>

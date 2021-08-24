@@ -1,7 +1,7 @@
 <template>
   <div
     class="project-content"
-    :style="{ animation: `project-from-bottom ${animationTime}s` }"
+    :style="{ 'animation-duration': `${animationTime}s` }"
   >
     <h1>{{ project.title || project.name }}</h1>
     <div class="project-description">
@@ -33,7 +33,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  aspect-ratio: 10/9;
+  animation: project-from-bottom;
+  aspect-ratio: 9/9;
 }
 
 .project-content h1 {
@@ -41,6 +42,7 @@ export default {
   margin-bottom: 5px;
   animation: slide-from-bottom 2.5s;
   width: -moz-fit-content;
+  width: fit-content;
   position: relative;
   text-transform: capitalize;
   z-index: 1;
@@ -71,6 +73,7 @@ export default {
 }
 
 .project-description div hr {
+  border: none;
   border-left: 1px dashed var(--fading);
   height: 100%;
   color: transparent;
@@ -117,6 +120,12 @@ export default {
 @media screen and (max-width: 1443px) {
   .project-content h1 {
     font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1015px) {
+  .project-content {
+    max-width: 100vw;
   }
 }
 </style>
